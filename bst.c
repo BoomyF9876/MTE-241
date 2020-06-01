@@ -6,7 +6,6 @@
  /*
  * Names:
  *   1.  uWaterloo User ID:  b4fang@uwaterloo.ca
- *   2.  uWaterloo User ID:  xxxxxxxx@uwaterloo.ca
  */
 
 /*****************************************************************
@@ -37,7 +36,7 @@
 *               description of how you used the tools to find and
 *               fix it. They can be in main.c or bst.c.
 *****************************************************************
-*  1. It should decrease the tree size at line 250, however it increased. Found by inspection.
+*  1. It should decrease the tree size at line 249, however it increased. Found by inspection.
 *  2. 
 *  3. 
 *  4. 
@@ -181,7 +180,7 @@ void bst_delete (bsn_t *p_currNode, bsn_t *p_parentNode) {
 		// traverse until we find the max of the subtree
 		while (p_swapNode->right  != NULL) {
 			p_swapParent = p_swapNode;
-			p_swapNode = p_swapNode->left;
+			p_swapNode = p_swapNode->right;
 		}
 		
 		// we now have the max of the subtree. By definition, it can only have one left or no children.
@@ -209,7 +208,7 @@ void bst_delete (bsn_t *p_currNode, bsn_t *p_parentNode) {
 		} else {
 			// need to know whether we are to the left or right of the parent
 			if (p_parentNode->left == p_currNode) {
-				p_parentNode->right = p_currNode->right;
+				p_parentNode->left = p_currNode->right;
 			} else {
 				p_parentNode->right = p_currNode->right;
 			}
