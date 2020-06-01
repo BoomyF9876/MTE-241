@@ -5,7 +5,7 @@
  
  /*
  * Names:
- *   1.  uWaterloo User ID:  xxxxxxxx@uwaterloo.ca
+ *   1.  uWaterloo User ID:  b4fang@uwaterloo.ca
  *   2.  uWaterloo User ID:  xxxxxxxx@uwaterloo.ca
  */
 
@@ -37,10 +37,10 @@
 *               description of how you used the tools to find and
 *               fix it. They can be in main.c or bst.c.
 *****************************************************************
-*  1.
-*  2.
-*  3.
-*  4.
+*  1. Variable name typo at line 125
+*  2. Function type error at line 152
+*  3. Function input type error at line 175, also pointer usage error at line 223
+*  4. Forgot to include the bracket at the end of the while loop
 ****************************************************************/
 
 #include <stdio.h>
@@ -122,7 +122,7 @@ bool bst_insert( bst_t *tree, S32 val )
 	if(p_prevNode->val > val) //insert as left child
 		p_prevNode->left = p_newNode;
 	else //insert as right child
-		p_prevNode->right = p_mewNode;
+		p_prevNode->right = p_newNode;
 	
 	tree->size = tree->size + 1;
 	
@@ -149,7 +149,7 @@ S32 bst_min( bst_t *tree )
 
 
 // Returns the largest integer in the binary search tree. Return INT_MIN if the tree is empty. Run time: O(h)
-U32 bst_max( bst_t *tree ) 
+S32 bst_max( bst_t *tree ) 
 {
 	bsn_t *p_currNode = tree->root;
 	
@@ -172,7 +172,7 @@ U32 bst_max( bst_t *tree )
 //	1. It is a leaf node
 //  2. It has only one child
 //	3. It has two children
-void bst_delete ( bsn_t p_currNode, bsn_t p_parentNode)
+void bst_delete ( bsn_t* p_currNode, bsn_t* p_parentNode)
 {
 	bsn_t *p_swapNode = NULL;
 	bsn_t *p_swapParent = NULL;
@@ -220,7 +220,7 @@ void bst_delete ( bsn_t p_currNode, bsn_t p_parentNode)
 			// need to know whether we are to the left or right of the parent
 			if(p_parentNode->left == p_currNode)
 			{
-				p_parentNode.left = p_currNode.left;
+				p_parentNode->left = p_currNode->left;
 			}
 			else
 			{
@@ -299,5 +299,6 @@ bool bst_erase( bst_t *tree, S32 val )
 			p_parentNode = p_currNode;
 			p_currNode = p_currNode->right;
 		}
+	}
 	return __FALSE;
 }
