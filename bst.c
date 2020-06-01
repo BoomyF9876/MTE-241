@@ -37,9 +37,9 @@
 *               fix it. They can be in main.c or bst.c.
 *****************************************************************
 *  1. It should decrease the tree size at line 249, however it increased. Found by inspection.
-*  2. 
-*  3. 
-*  4. 
+*  2. Inside function bst_delete case 1, when it traverses from the tree, it should traverse towards the right of the tree instead of to the left. Found by stepping through in debug mode and reading the comments.
+*  3. Inside function bst_delete case 2, when replacing the node, if the node is on the left of the parent node, it should replace the left of the parent node with the child instead of the right one. Found by stepping through in debug mode and reading the comments.
+*  4. Inside function bst_delete case 3, the condition statement should be "p_currNode->right != NULL && p_currNode->left != NULL" instead of using bit wise operator '&', since '&&' is the logical AND operation. Found by inspection.
 ****************************************************************/
 
 #include <stdio.h>
@@ -170,9 +170,8 @@ void bst_delete (bsn_t *p_currNode, bsn_t *p_parentNode) {
 		} else {
 			p_parentNode->right = NULL;
 		}
+	// case 3: two children, pick one to replace with
 	} else if ((p_currNode->right != NULL) && (p_currNode->left != NULL)) {
-		//moved this to inside the else if to increase readability of programming flow
-		// case 3: two children, pick one to replace with
 		// balancing was not a parameter, so we will always take max of left branch to replace it with
 		p_swapNode = p_currNode->left;
 		p_swapParent = p_currNode;
